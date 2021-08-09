@@ -41,7 +41,8 @@
                         <a class="nav-link active" aria-current="page" href="code.html">The Code</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" target="_blank" href="https://github.com/Hamberfim/jsConsumeAPI">Project Git Repo</a>
+                        <a class="nav-link" target="_blank" href="https://github.com/Hamberfim/jsConsumeAPI">Project Git
+                            Repo</a>
                     </li>
                 </ul>
             </div>
@@ -57,10 +58,68 @@
                     <!-- Javascript Display -->
                     <pre class="line-numbers">
                         <code class="language-javascript">
-                            // call hello World to test Prism Code Display
-                            function helloWorld() {
-                                alert("Test - Hello World!");
+                            // site.js
+                            "use strict";
+
+                            // using lambda expressions to fetch users
+                            fetch('https://jsonplaceholder.typicode.com/users')
+                                .then((response) => response.json())
+                                .then((data) => appendData(data))
+                                // .then((json) => console.log(json))
+                                .catch((err) => alert(err + " " + err.messages));
+
+
+                            // function/loop thru json user 'data' and append it into the div with the id of 'userData'
+                            function appendData(data) {
+                                // get the div id where data will be placed
+                                let allUsers = document.getElementById('userData');
+
+                                for (let i = 0; i < data.length; i++) {
+                                    // append each user/person to the html page
+                                    // new div element
+                                    let div = document.createElement('div');
+                                    // fill the new div with a user/persons data
+                
+                                    div.innerHTML = `&lt;span class="fw-bold">Full Name: &lt;/span>${data[i].name} &lt;br>
+                                                    &lt;span class="fw-bold">Email: &lt;/span>${data[i].email} &lt;br>
+                                                    &lt;span class="fw-bold">&lt;a href="app_details.html?${data[i].id}">User Details&lt;/a>&lt;/span>&lt;br>
+                                                    &lt;br>`;
+
+                                    // append div to the allUsers div
+                                    allUsers.appendChild(div);
+
+                                }
                             }
+                        
+                            // app_details.html script
+                            let url = document.location.href; // get the url
+                            let splitUrl = url.split("?"); // split the url to get the id
+                            let data = splitUrl[splitUrl.length - 1] || splitUrl[splitUrl.length - 2]; // assign the id value
+
+                            fetch(`https://jsonplaceholder.typicode.com/users/${data}`)
+                                .then(function (data) {
+                                    return data.json(); // get the JSON data from the response using json()
+                                })
+                                .then((data) => {
+                                    console.log(data);
+                                    let results = document.getElementById('results');
+                                    results.innerHTML = `&lt;span class="fw-bold">User Id: &lt;/span>${data.id}&lt;/a>&lt;br>
+                                                    &lt;span class="fw-bold">User Name: &lt;/span>&lt;span class="h6 text-primary">${data.username}&lt;/span> &lt;br>
+                                                    &lt;span class="fw-bold">Full Name: &lt;/span>${data.name} &lt;br>
+                                                    &lt;span class="fw-bold">Email: &lt;/span>&lt;span class="h6 text-primary">${data.email}&lt;/span> &lt;br>
+                                                    &lt;span class="fw-bold text-nowrap">Address: &lt;/span>${data.address.street} ${data.address.suite}, &lt;br>
+                                                    &lt;span class="fw-bold">City/Zipcode: &lt;/span>${data.address.city} ${data.address.zipcode} &lt;br>
+                                                    &lt;span class="fw-bold">Phone: &lt;/span>&lt;span class="h6 text-primary">${data.phone}&lt;/span> &lt;br>
+                                                    &lt;span class="fw-bold">Personal Website: &lt;/span>&lt;a href="https://github.com/Hamberfim" title="The text is a Fake Link - Opens my GitHub site" target="_blank">${data.website}&lt;/a> &lt;br>
+                                                    &lt;br>
+                                                    &lt;span class="fw-bold">Employer: &lt;/span>&lt;span class="h6 text-danger">${data.company.name}&lt;/span> &lt;br>
+                                                    &lt;span class="fw-bold">Company Focus: &lt;/span>${data.company.catchPhrase} &lt;br>
+                                                    &lt;span class="fw-bold">Market Approach: &lt;/span>${data.company.bs} &lt;br>
+                                                    &lt;br>`;
+
+                                })
+                                // .then((json) => console.log(json))
+                                .catch((err) => alert(err + " " + err.messages));
                         </code>
                     </pre>
                 </div>
@@ -68,7 +127,14 @@
                     <!-- Code Description -->
                     <p>The code is structure in one function.</p>
                     <h5>Hello World</h5>
-                    <p>The Hello World function is call to display an alert with a message containing<br>'Test - Hello World!'</p>
+                    <p>The Hello World function is call to display an alert with a message containing<br>'Test - Hello
+                        World!'</p>
+                    <br>
+                    <p>The code is structure in one function.</p>
+                    <h5>Hello World</h5>
+                    <p>The Hello World function is call to display an alert with a message containing<br>'Test - Hello
+                        World!'</p>
+                    <br>
                 </div>
             </div>
         </div>

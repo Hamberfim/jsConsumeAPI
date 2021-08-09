@@ -62,17 +62,19 @@
                         using <span class="fw-bold">JavaScript</span>.
                     </h5>
                     <h4 class="mt-3 border-bottom border-1 border-dark"></h4>
-                    <p>Using fetch() and JavaScript we consume the jsonplaceholder API and populate this page with a
-                        user list. Clicking 'User Details' we can view information specific to each user.</p>
+                    <p>Using fetch() and JavaScript, again we consume the jsonplaceholder API and populate this page with a
+                        specific user's details.</p>
                 </div>
                 <div class="col">
                     <h3 class="border-1 border-bottom border-dark pb-2">
-                        Users Fetched:
+                        User Details:
                     </h3>
                     <div class="row">
-                        <div id="userData">
+                        <div id="results">
                             <!-- results go here -->
                         </div>
+                        <br>
+                        <div><a href="app.html">Back to user list</a></div>
                     </div>
                 </div>
             </div>
@@ -115,7 +117,36 @@
         integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous">
     </script>
     <!-- My JS -->
-    <script src="js/site.js"></script>
+    <script>
+        let url = document.location.href; // get the url
+        let splitUrl = url.split("?"); // split the url to get the id
+        let data = splitUrl[splitUrl.length - 1] || splitUrl[splitUrl.length - 2]; // assign the id value
+
+        fetch(`https://jsonplaceholder.typicode.com/users/${data}`)
+            .then(function (data) {
+                return data.json(); // get the JSON data from the response using json()
+            })
+            .then((data) => {
+                console.log(data);
+                let results = document.getElementById('results');
+                results.innerHTML = `<span class="fw-bold">User Id: </span>${data.id}</a><br>
+                                <span class="fw-bold">User Name: </span><span class="h6 text-primary">${data.username}</span> <br>
+                                <span class="fw-bold">Full Name: </span>${data.name} <br>
+                                <span class="fw-bold">Email: </span><span class="h6 text-primary">${data.email}</span> <br>
+                                <span class="fw-bold text-nowrap">Address: </span>${data.address.street} ${data.address.suite}, <br>
+                                <span class="fw-bold">City/Zipcode: </span>${data.address.city} ${data.address.zipcode} <br>
+                                <span class="fw-bold">Phone: </span><span class="h6 text-primary">${data.phone}</span> <br>
+                                <span class="fw-bold">Personal Website: </span><a href="https://github.com/Hamberfim" title="The text is a Fake Link - Opens my GitHub site" target="_blank">${data.website}</a> <br>
+                                <br>
+                                <span class="fw-bold">Employer: </span><span class="h6 text-danger">${data.company.name}</span> <br>
+                                <span class="fw-bold">Company Focus: </span>${data.company.catchPhrase} <br>
+                                <span class="fw-bold">Market Approach: </span>${data.company.bs} <br>
+                                <br>`;
+
+            })
+            // .then((json) => console.log(json))
+            .catch((err) => alert(err + " " + err.messages));
+    </script>
 </body>
 
 </html>

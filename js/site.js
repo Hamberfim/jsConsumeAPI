@@ -18,7 +18,7 @@ fetch('https://jsonplaceholder.typicode.com/users')
         
     }) */
 
-// using lambda expressions to fetch
+// using lambda expressions to fetch users
 fetch('https://jsonplaceholder.typicode.com/users')
     .then((response) => response.json())
     .then((data) => appendData(data))
@@ -37,12 +37,9 @@ function appendData(data) {
         let div = document.createElement('div');
         // fill the new div with a user/persons data
         // div.innerHTML = 'User Name: ' + data[i].username + '  Full Name: ' + data[i].name;
-        div.innerHTML = `<span class="fw-bold">User Name: </span>${data[i].username} <br>
-                        <span class="fw-bold">Full Name: </span>${data[i].name} <br>
+        div.innerHTML = `<span class="fw-bold">Full Name: </span>${data[i].name} <br>
                         <span class="fw-bold">Email: </span>${data[i].email} <br>
-                        <span class="fw-bold">Address: </span>${data[i].address.street} ${data[i].address.suite}, ${data[i].address.city} ${data[i].address.zipcode}<br>
-                        <span class="fw-bold">Phone: </span>${data[i].phone} <br>
-                        <span class="fw-bold">Website: </span><a href="https://github.com/Hamberfim" target="_blank">${data[i].website}</a> <br>
+                        <span class="fw-bold"><a href="app_details.html?${data[i].id}">User Details</a></span><br>
                         <br>`;
 
         // append div to the allUsers div
