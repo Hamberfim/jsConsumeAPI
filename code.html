@@ -125,15 +125,29 @@
                 </div>
                 <div class="col-md-4">
                     <!-- Code Description -->
-                    <p>The code is structure in one function.</p>
-                    <h5>Hello World</h5>
-                    <p>The Hello World function is call to display an alert with a message containing<br>'Test - Hello
-                        World!'</p>
+                    <h3>site.js</h3>
+                    <h5>fetch()</h5>
+                    <p>Using fetch with modern lambda expressions we make the request by passing in the mandatory path
+                        to the api resource being consumed. The fulfilled response is assigned to the variable 'data'
+                        and passed into a function called
+                        <span class="fw-bold">appendData()</span>.</p>
                     <br>
-                    <p>The code is structure in one function.</p>
-                    <h5>Hello World</h5>
-                    <p>The Hello World function is call to display an alert with a message containing<br>'Test - Hello
-                        World!'</p>
+                    <h5>appendData()</h5>
+                    <p>Here we retrieve a div tag with 'userData' as the id where data will be placed in the html page. Using <span
+                            class="fw-bold">document.getElementById</span>
+                        we assign it to the variable 'allUsers'. We then loop through the response data creating a new
+                        div tag to hold each user's name and email address, along with the users unique ID.</p>
+                    <p>After each loop the information is added to a new div, then the div is appended to allUsers via <span
+                            class="fw-bold">allUsers.appendChild(div)</span> and populated in the html page.</p>
+                    <br>
+                    <h3>JS in app_details.html</h3>
+                    <h5>User Details Link</h5>
+                    <p>From a very simple standpoint and using vanilla JS, we can send the user id in the url to the app_details.html page. We
+                        get the current url using <span class="fw-bold">document.location.href</span> and assign it to
+                        the varible 'url'.</p>
+                    <p>We split the url at the '?' to get the actual user id and assign it to the
+                        vaiable 'data'. Then basically using the same <span class="fw-bold">fetch()</span> api process as in the site.js file we populate the html page with
+                        details specific to the user.</p>
                     <br>
                 </div>
             </div>
