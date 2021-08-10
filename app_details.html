@@ -129,7 +129,7 @@
             .then((data) => {
                 console.log(data);
                 let results = document.getElementById('results');
-                results.innerHTML = `<span class="fw-bold">User Id: </span>${data.id}</a><br>
+                results.innerHTML = `<div class="even"><span class="fw-bold">User Id: </span>${data.id}</a><br>
                                 <span class="fw-bold">User Name: </span><span class="h6 text-primary">${data.username}</span> <br>
                                 <span class="fw-bold">Full Name: </span>${data.name} <br>
                                 <span class="fw-bold">Email: </span><span class="h6 text-primary">${data.email}</span> <br>
@@ -140,8 +140,7 @@
                                 <br>
                                 <span class="fw-bold">Employer: </span><span class="h6 text-danger">${data.company.name}</span> <br>
                                 <span class="fw-bold">Company Focus: </span>${data.company.catchPhrase} <br>
-                                <span class="fw-bold">Market Approach: </span>${data.company.bs} <br>
-                                <br>`;
+                                <span class="fw-bold">Market Approach: </span>${data.company.bs} <br></span>`;
 
             })
             // .then((json) => console.log(json))

@@ -33,14 +33,21 @@ function appendData(data) {
 
     for (let i = 0; i < data.length; i++) {
         // append each user/person to the html page
+        // create a class based on odd or even index number
+        let rowClass = 'odd';
+        if (i % 2 == 0) {
+            rowClass = 'even';
+        } else {
+            rowClass = 'odd';
+        }
         // new div element
         let div = document.createElement('div');
         // fill the new div with a user/persons data
         // div.innerHTML = 'User Name: ' + data[i].username + '  Full Name: ' + data[i].name;
-        div.innerHTML = `<span class="fw-bold">Full Name: </span>${data[i].name} <br>
+        div.innerHTML = `<div class="${rowClass}"><span class="fw-bold">Full Name: </span>${data[i].name} <br>
                         <span class="fw-bold">Email: </span>${data[i].email} <br>
                         <span class="fw-bold"><a href="app_details.html?${data[i].id}">User Details</a></span><br>
-                        <br>`;
+                        </div>`;
 
         // append div to the allUsers div
         allUsers.appendChild(div);

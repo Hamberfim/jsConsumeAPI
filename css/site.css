@@ -98,6 +98,16 @@ main>.container {
     width: 100%;
 }
 
+.odd {
+    background-color: #e7e7e7;
+    padding: 10px 0px 15px 15px;
+}
+
+.even {
+    background-color: #f7f7f7;
+    padding: 10px 0px 15px 15px;
+}
+
 /* Prism CSS for Pre/Code tags */
 
 code[class*="language-"], pre[class*="language-"] {
